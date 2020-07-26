@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from 'react';
+import React, {  useReducer } from 'react';
 import './style.scss';
 import Form from './Form';
 let count = 1;
@@ -14,6 +14,7 @@ const todosReducer = (state, action) => {
 }
 export const Todo = React.memo(() => {
 	const [items, dispatch] = useReducer(todosReducer, [])
+	console.log('Render', count++);
 	return (
 		<div className="todo-cont">
 			<Form onSubmit={(payload) => dispatch({ type: 'add', payload })} />
@@ -24,7 +25,7 @@ export const Todo = React.memo(() => {
 						className={item.done ? 'done' : ''}>{item.name}</li>)
 				}
 			</ul>
-			<h3>Render - {count++}</h3>
+			<h3></h3>
 		</div>
 	);
 })
